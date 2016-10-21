@@ -22,7 +22,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController,UITextViewDelegate {
+class DetailViewController: UIViewController {
   
 
 @IBOutlet weak var imageOfItem: UIImageView!

@@ -34,7 +34,7 @@ class MasterViewController: UITableViewController {
     var masterView:MasterViewController?
     let kNotes:String = "notes"
     let BLANK_NOTE:String = "(New Note)"
-
+   var newCandyPage:String = Candy
     
   // MARK: - View Setup
   override func viewDidLoad() {
@@ -80,12 +80,20 @@ class MasterViewController: UITableViewController {
   }
   
     // add controller function
+    
     func insertNewObject(sender: UIBarButtonItem) {
-        //let alert = UIAlertController(title: "Alert", message: "You pressed the add button!", preferredStyle: UIAlertControllerStyle.Alert)
-        //alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-        
-       // self.presentViewController(alert, animated: true, completion: nil)
+        /* makes blnak note appear if your are no inputs already*/
+        if objects.count == 0 || objects[0] != BLANK_NOTE {
+            /////////////////////////////////////
+            objects.insert(newCandyPage, atIndex: 0)
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+        currentIndex = 0
+        self.performSegueWithIdentifier("showDetail", sender: self)
     }
+
+
     
     
   override func didReceiveMemoryWarning() {
