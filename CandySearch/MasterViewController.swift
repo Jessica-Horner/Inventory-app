@@ -34,7 +34,10 @@ class MasterViewController: UITableViewController {
     var masterView:MasterViewController?
     let kNotes:String = "notes"
     let BLANK_NOTE:String = "(New Note)"
-   var newCandyPage:String = Candy
+    
+    
+  // var newCandy = DetailViewController? = nil
+    //i was attempting to make a variable to enable to call that edit screen (detailViewController) in my InsertNewObjectFunction
     
   // MARK: - View Setup
   override func viewDidLoad() {
@@ -85,7 +88,7 @@ class MasterViewController: UITableViewController {
         /* makes blnak note appear if your are no inputs already*/
         if objects.count == 0 || objects[0] != BLANK_NOTE {
             /////////////////////////////////////
-            objects.insert(newCandyPage, atIndex: 0)
+            objects.insert(BLANK_NOTE, atIndex: 0)
             let indexPath = NSIndexPath(forRow: 0, inSection: 0)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
@@ -134,6 +137,15 @@ class MasterViewController: UITableViewController {
     })
     tableView.reloadData()
   }
+    //////deletebutton function
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            objects.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
   
   // MARK: - Segues
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
